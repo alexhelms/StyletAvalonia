@@ -17,7 +17,7 @@ This implementation depends on Avalonia, similarly to how Stylet depends on WPF.
 
 I found a few unsupported features in Avalonia. I'm not too familiar with Avalonia yet, some of these can probably be worked around.
 
-1. There is no `Loaded` and `Unloaded` events, so `OnViewLoaded()` does not work. See https://github.com/AvaloniaUI/Avalonia/issues/7908.
+1. There is no `Loaded` and `Unloaded` events, ~~so `OnViewLoaded()` does not work~~. See https://github.com/AvaloniaUI/Avalonia/issues/7908. There is a workaround using events for attaching and detaching from the visual tree.
 
 2. Avalonia windows do not allow the owner to be explicitly set.
 
