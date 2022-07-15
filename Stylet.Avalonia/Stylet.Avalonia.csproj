@@ -7,11 +7,11 @@
   </PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.Toolkit.Mvvm" Version="7.1.2" />
-		<PackageReference Include="Avalonia" Version="0.10.12" />
-		<PackageReference Include="Avalonia.Desktop" Version="0.10.12" />
+		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0-preview4" />
+		<PackageReference Include="Avalonia" Version="0.10.16" />
+		<PackageReference Include="Avalonia.Desktop" Version="0.10.16" />
 		<!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
-		<PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="0.10.12" />
+		<PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="0.10.16" />
 	</ItemGroup>
 
 </Project>

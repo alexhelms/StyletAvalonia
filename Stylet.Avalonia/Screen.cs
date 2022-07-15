@@ -1,5 +1,7 @@
-﻿using Avalonia.Controls;
-using Microsoft.Toolkit.Mvvm.ComponentModel;
+﻿using Avalonia;
+using Avalonia.Controls;
+using Avalonia.VisualTree;
+using CommunityToolkit.Mvvm.ComponentModel;
 using Stylet.Avalonia.Logging;
 using System.Diagnostics.CodeAnalysis;
 
@@ -211,6 +213,14 @@ public class Screen : ObservableObject, IScreen
 
         this.logger.Info("Attaching view {0}", view);
 
+        if ((View as IVisual)?.IsAttachedToVisualTree ?? false)
+            this.OnViewLoaded();
+        else
+        {
+            View.AttachedToVisualTree += HandleOnViewLoaded!;
+            View.DetachedFromVisualTree += HandleOnViewUnloaded!;
+        }
+
         // TODO: Not supported yet, see https://github.com/AvaloniaUI/Avalonia/issues/7908
         //if (view != null)
         //{
@@ -219,6 +229,18 @@ public class Screen : ObservableObject, IScreen
         //    else
         //        view.Loaded += (o, e) => this.OnViewLoaded();
         //}
+    }
+
+    private void HandleOnViewLoaded(object sender, VisualTreeAttachmentEventArgs e)
+    {
+        OnViewLoaded();
+    }
+
+    private void HandleOnViewUnloaded(object sender, VisualTreeAttachmentEventArgs e)
+    {
+        var control = (Control)sender!;
+        control.AttachedToVisualTree -= HandleOnViewLoaded!;
+        control.DetachedFromVisualTree -= HandleOnViewUnloaded!;
     }
 
     /// <summary>

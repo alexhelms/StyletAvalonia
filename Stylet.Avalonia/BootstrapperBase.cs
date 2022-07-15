@@ -52,7 +52,7 @@ public abstract class BootstrapperBase : IWindowManagerConfig, IDisposable, IDat
     public IControl Build(object data)
     {
         var viewManager = (IViewManager)this.GetInstance(typeof(IViewManager));
-        return (IControl)viewManager.CreateViewForModel(data);
+        return viewManager.CreateAndBindViewForModelIfNecessary(data);
     }
 
     public bool Match(object data)

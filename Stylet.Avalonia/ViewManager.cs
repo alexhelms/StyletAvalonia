@@ -6,6 +6,7 @@ using System.Reflection;
 using System.Text.RegularExpressions;
 using AvaloniaObj = Avalonia.AvaloniaObject;
 using AvaloniaApp = Avalonia.Application;
+using Avalonia;
 
 namespace Stylet.Avalonia;
 
@@ -307,6 +308,18 @@ public class ViewManager : IViewManager
         var view = (Control)this.ViewFactory(viewType);
 
         this.InitializeView(view, viewType);
+
+        //view.GetObservable(Control.DataContextProperty)
+        //    .Subscribe(viewModel =>
+        //    {
+        //        if (viewModel is null) return;
+
+        //        if (viewModel is IViewAware viewModelAsViewAware)
+        //        {
+        //            logger.Info("Setting {0}'s View to {1}", viewModel, view);
+        //            viewModelAsViewAware.AttachView(view);
+        //        }
+        //    });
 
         return view;
     }
